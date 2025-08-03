@@ -32,7 +32,7 @@ const Navbar = () => {
             } text-2xl font-bold text-white animate-delay-300`}
           style={{ animationName: "slideInLeft" }}
         >
-          NexusCRM
+          CloudCRM
         </h1>
       </Link>
 
