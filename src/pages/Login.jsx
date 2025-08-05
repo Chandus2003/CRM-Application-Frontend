@@ -35,7 +35,7 @@ export default function Login() {
             type="submit"
             className="w-full bg-blue-600 hover:bg-blue-700 py-2 rounded font-semibold"
           >
-            Login
+            Login to th app
           </button>
         </form>
       </div>
