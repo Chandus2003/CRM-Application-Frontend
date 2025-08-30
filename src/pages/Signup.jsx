@@ -1,19 +1,48 @@
 import React, { useState } from 'react';
+import { use } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function Signup() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const navigate = useNavigate()
+  const handleSignup = async (e) => {
+    e.preventDefault(); // prevent page reload
 
-  const handleSignup = (e) => {
-    e.preventDefault();
     if (password !== confirmPassword) {
       alert("Passwords do not match!");
       return;
     }
-    console.log('Signing up with:', name, email, password);
-    // Add signup logic here
+
+    const data = { name, email, password };
+
+    try {
+      const response = await fetch("http://localhost:5000/api/auth/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+      console.log("Server response:", result);
+
+      if (response.ok) {
+        // alert("Registration successful!");
+        setName("");
+        setEmail("");
+        setPassword("");
+        setConfirmPassword("");
+
+         navigate("/");
+      } else {
+        alert(`Registration failed: ${result.message || "Unknown error"}`);
+      }
+    } catch (error) {
+      console.error("Error connecting to backend:", error);
+      alert("Something went wrong. Please try again.");
+    }
   };
 
   return (
