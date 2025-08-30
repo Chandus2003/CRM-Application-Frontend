@@ -1,57 +1,58 @@
-import React from 'react';
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 export default function Login() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const navigate = useNavigate();
+
   const handleLogin = async (e) => {
     e.preventDefault();
-    console.log('Logging in with:', email, password);
+    console.log("Logging in with:", email, password);
 
-    const data = {
-      email: email,
-      password: password
-    }
+    const data = { email, password };
+
     try {
       const response = await fetch("http://localhost:5000/api/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
-        credentials: "include"
+        credentials: "include",
       });
 
       const result = await response.json();
       console.log("Server response:", result);
 
-if (response.ok) {
-  alert("Login successful!");
-  
-  // Store user info persistently
-  localStorage.setItem("user", JSON.stringify(result.user));
 
-  const role = result.user.role;
-
-  if (role === "admin") {
-    localStorage.setItem("admin", JSON.stringify(result.user));
-    navigate("/admin");
-  } else if (role === "engineer") {
-    localStorage.setItem("engineer", JSON.stringify(result.user));
-    navigate("/engineer");
-  } else {
-    navigate("/user");
-  }
-} else {
-  alert(`Login failed: ${result.message || "Unknown error"}`);
-}
+      if (response.ok) {
+        // ✅ Store user with _id
+        localStorage.setItem(
+          "user",
+          JSON.stringify({
+            _id: result.user._id,  
+            name: result.user.name,
+            email: result.user.email,
+            role: result.user.role,
+            token: result.token,
+          })
+        );
 
 
+        const role = result.user.role;
+        if (role === "admin") {
+          navigate("/admin");
+        } else if (role === "engineer") {
+          navigate("/engineer");
+        } else {
+          navigate("/user");
+        }
+      } else {
+        alert(`Login failed: ${result.message || "Unknown error"}`);
+      }
     } catch (error) {
       console.error("Error connecting to backend:", error);
       alert("Something went wrong. Please try again.");
     }
-
-
   };
 
   return (
