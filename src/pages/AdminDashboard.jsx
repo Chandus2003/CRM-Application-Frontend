@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { BarChart3 } from "lucide-react";
 
 export default function AdminDashboard() {
   const navigate = useNavigate();
@@ -71,9 +72,9 @@ export default function AdminDashboard() {
         <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-lg">📊</span>
-              </div>
+               <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center">
+            <BarChart3 className="w-6 h-6 text-white" />
+          </div>
               <h1 className="text-2xl font-bold text-white">CloudCRM Admin</h1>
             </div>
             <button
