@@ -50,7 +50,7 @@ export default function CreateTicket() {
   };
 
   return (
-    <div className="p-6 rounded bg-slate-700 shadow-md max-w-md mx-auto">
+    <div className="p-6 rounded bg-slate-700  max-w-md mx-auto">
       <h2 className="text-xl font-bold mb-4 text-center">Create Ticket</h2>
       <form onSubmit={handleCreateTicket} className="space-y-4">
         <input

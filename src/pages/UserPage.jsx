@@ -42,7 +42,7 @@ export default function UserPage() {
       </div>
 
       {/* Conditional Rendering of Components */}
-      <div className="bg-slate-800 p-6 rounded shadow-md">
+      <div className=" p-6 rounded ">
         {activeComponent === "createTicket" && <CreateTicket />}
         {activeComponent === "viewTickets" && <ViewTickets />}
         {!activeComponent && <div>Select an option above to continue.</div>}

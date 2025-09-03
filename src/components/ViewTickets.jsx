@@ -83,14 +83,11 @@ export default function ViewTickets() {
     }, {});
 
     return (
-        <div className="min-h-screen bg-gray-50">
+        <div className="min-h-screen bg-slate-700">
             {/* Header */}
-            <div className="bg-white shadow-sm border-b">
+            <div className="bg-slate-400 shadow-sm border-b">
                 <div className="max-w-7xl mx-auto px-6 py-8">
-                    <h1 className="text-3xl font-bold text-black text-center">
-                        Support Tickets
-                    </h1>
-
+                    <h1 className="text-3xl font-bold text-black">Support Tickets</h1>
                     <p className="text-gray-600 mt-2">View and manage your support requests</p>
                 </div>
             </div>
@@ -103,7 +100,7 @@ export default function ViewTickets() {
                             {groupedTickets[status].map((ticket) => (
                                 <div
                                     key={ticket._id}
-                                    className="bg-white border border-gray-200 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200"
+                                    className="bg-slate-400 border border-gray-200 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200"
                                 >
                                     <div className="flex justify-between items-start mb-4">
                                         <h3 className="font-bold text-lg text-gray-900 flex-1 pr-3">{ticket.title}</h3>
@@ -114,7 +111,7 @@ export default function ViewTickets() {
                                         </span>
                                     </div>
                                     <p className="text-gray-700 leading-relaxed mb-4">{ticket.description}</p>
-                                    <div className="text-xs text-gray-500 bg-gray-50 px-3 py-2 rounded">
+                                    <div className="text-xs text-gray-500 bg-slate-400 px-3 py-2 rounded">
                                         Ticket ID: {ticket._id}
                                     </div>
                                 </div>
